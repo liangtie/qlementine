@@ -87,13 +87,16 @@ protected:
 };
 
 static QString getDummyText(const unsigned int minWords = 3, const unsigned int maxWords = 4) {
-  static const auto loremIpsumWords = std::array<const QString, 69>{ "Lorem", "Ipsum", "Dolor", "Sit", "Amet",
-    "Consectetur", "Adipiscing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore",
-    "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris",
-    "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat", "Duis", "Aute", "Irure", "Dolor", "In",
-    "Reprehenderit", "In", "Voluptate", "Velit", "Esse", "Cillum", "Dolore", "Eu", "Fugiat", "Nulla", "Pariatur",
-    "Excepteur", "Sint", "Occaecat", "Cupidatat", "Non", "Proident", "Sunt", "In", "Culpa", "Qui", "Officia",
-    "Deserunt", "Mollit", "Anim", "Id", "Est", "Laborum" };
+  static const auto dummyChineseWords = std::array<const QString, 71>{
+    "测试", "示例", "文本", "数据", "内容", "随机", "生成", "界面", "控件", "按钮",
+    "窗口", "布局", "颜色", "字体", "大小", "样式", "主题", "切换", "功能", "属性",
+    "场景", "对象", "材质", "编辑", "保存", "打开", "关闭", "导出", "导入", "预览",
+    "打印", "查找", "筛选", "搜索", "菜单", "工具", "导航", "设置", "帮助", "关于",
+    "信息", "联系", "网站", "许可", "版权", "社交", "链接", "GitHub", "Mastodon", "GitLab",
+    "选项", "切换", "滑块", "进度", "列表", "树形", "分组", "单选", "复选", "输入",
+    "日期", "时间", "组合", "框", "文本框", "行编辑", "标签", "图标", "状态", "开关",
+    "动画"
+  };
 
   auto rd = std::random_device();
   auto gen = std::mt19937(rd());
@@ -101,12 +104,12 @@ static QString getDummyText(const unsigned int minWords = 3, const unsigned int 
   auto randomCountDistrib = std::uniform_int_distribution<>(minWords, maxWords);
   const auto random_word_count = randomCountDistrib(gen);
 
-  auto randomIndexDistrib = std::uniform_int_distribution<>(0, loremIpsumWords.size() - 1 - random_word_count);
+  auto randomIndexDistrib = std::uniform_int_distribution<>(0, dummyChineseWords.size() - 1 - random_word_count);
   const auto randomWordIndex = randomIndexDistrib(gen);
 
-  auto result = loremIpsumWords.at(randomWordIndex);
+  auto result = dummyChineseWords.at(randomWordIndex);
   for (auto i = 0; i < random_word_count - 1; ++i) {
-    result += ' ' + loremIpsumWords.at(randomWordIndex + 1 + i);
+    result += dummyChineseWords.at(randomWordIndex + 1 + i);
   }
   return result;
 }
@@ -466,8 +469,8 @@ struct ShowcaseWindow::Impl {
     {
       layout->addWidget(navBar);
       navBar->setItemsShouldExpand(true);
-      navBar->addItem("Objects", QIcon(), QString("%1").arg(12));
-      navBar->addItem("Materials", QIcon(), QString("%1").arg(3));
+      navBar->addItem("对象", QIcon(), QString("%1").arg(12));
+      navBar->addItem("材质", QIcon(), QString("%1").arg(3));
     }
 
     layout->addWidget(makeHorizontalLine(widget));
@@ -532,7 +535,7 @@ struct ShowcaseWindow::Impl {
         qlementineStyle->setAutoIconColor(listWidget, AutoIconColor::None);
 
         for (auto i = 0; i < 15; ++i) {
-          const auto itemText = QString("Item #%1 with very long text that can be elided").arg(i);
+          const auto itemText = QString("对象 #%1 测试非常长的文本").arg(i);
           auto* item = new QListWidgetItem(getDummyColoredIcon(), itemText, listWidget);
           item->setFlags(item->flags() | Qt::ItemFlag::ItemIsUserCheckable);
           item->setCheckState(i % 3 == 0 ? Qt ::CheckState::Checked : Qt::CheckState::Unchecked);
@@ -574,8 +577,8 @@ struct ShowcaseWindow::Impl {
         topBarLayout->addWidget(segmentedControl);
         segmentedControl->setItemsShouldExpand(false);
         segmentedControl->addItem(
-          "属性", makeThemedIcon(Icons16::Navigation_SlidersVertical), QString("%1").arg(4));
-        segmentedControl->addItem("场景", makeThemedIcon(Icons16::Misc_Globe), QString("%1").arg(2));
+          "Properties", makeThemedIcon(Icons16::Navigation_SlidersVertical), QString("%1").arg(4));
+        segmentedControl->addItem("Scene", makeThemedIcon(Icons16::Misc_Globe), QString("%1").arg(2));
       }
     }
 
