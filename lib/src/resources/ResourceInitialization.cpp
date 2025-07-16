@@ -9,8 +9,8 @@
 void qlementineResourceInitialization() {
   // Loads the QRC content.
   Q_INIT_RESOURCE(qlementine);
-  Q_INIT_RESOURCE(qlementine_font_inter);
-  Q_INIT_RESOURCE(qlementine_font_roboto);
+  // Q_INIT_RESOURCE(qlementine_font_inter);
+  // Q_INIT_RESOURCE(qlementine_font_roboto);
 }
 
 namespace oclero::qlementine::resources {

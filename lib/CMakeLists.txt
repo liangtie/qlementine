@@ -99,8 +99,8 @@ set(HEADERS
 
 set(RESOURCES
   resources/qlementine.qrc
-  resources/qlementine_font_inter.qrc
-  resources/qlementine_font_roboto.qrc
+  # resources/qlementine_font_inter.qrc
+  # resources/qlementine_font_roboto.qrc
 )
 
 # Create target.
