@@ -574,8 +574,8 @@ struct ShowcaseWindow::Impl {
         topBarLayout->addWidget(segmentedControl);
         segmentedControl->setItemsShouldExpand(false);
         segmentedControl->addItem(
-          "Properties", makeThemedIcon(Icons16::Navigation_SlidersVertical), QString("%1").arg(4));
-        segmentedControl->addItem("Scene", makeThemedIcon(Icons16::Misc_Globe), QString("%1").arg(2));
+          "属性", makeThemedIcon(Icons16::Navigation_SlidersVertical), QString("%1").arg(4));
+        segmentedControl->addItem("场景", makeThemedIcon(Icons16::Misc_Globe), QString("%1").arg(2));
       }
     }
 
